@@ -1,0 +1,105 @@
+args:
+  lr_decay_style: constant
+  checkpoint_activations: True
+  only_log_video_latents: False
+  model_parallel_size: 1
+  wandb: True
+  wandb_project_name: Name
+  experiment_name: 14b_720p_training
+  mode: finetune
+  load: ckpt_14b
+  no_load_rng: True
+  init_adapter_layer: False
+  train_iters: 5000
+  eval_iters: 1
+  eval_interval: 2000
+  save: ckpts/vace_14b_sft
+  save_interval: 100
+  log_interval: 1
+  train_data: [
+    '' #your training data
+  ]
+  split: 1,0,0
+  iterable_dataset: True
+  iterable_dataset_eval: True
+  num_workers: 4
+  prefetch_factor: 2
+  sequence_parallel_size: 20
+  force_train: True
+  restart_on_stop: True
+
+  fsdp2: False
+  fsdp2_config:
+    mixed_precision: True
+    param_dtype: bfloat16
+    reduce_dtype: bfloat16
+    sharding_strategy: full_shard
+    auto_wrap: True
+    wrap_patterns: ['block', 'layer', 'transformer', 'encoder', 'decoder']
+    min_params_to_wrap: 1000000 
+    reshard_after_forward: True
+    offload_params: False
+    
+    # Optimizer configuration for FSDP2
+    optimizer: AdamW
+    optimizer_params:
+      lr: 1.0e-5
+      weight_decay: 0.01
+      betas: [0.9, 0.999]
+      eps: 1.0e-8
+
+      betas: [0.5, 0.999]  # Different betas for discriminator
+
+data:
+  target: sub_dataset.CombineDataset
+  params:
+    sp: 1
+    video_size: [ 720, 1280 ]
+    fps: 16
+    tryon_ratio: 0.02
+    max_num_frames: 81
+    skip_frms_num: 3
+    train_ratio: 0.9
+    max_subjects: 3
+    fixed_resolution: False
+    super_resolution: True
+    subject_dynamic: False
+    new_straetgy: True
+    singal_drop_rate: 0.65
+    inpainting_ratio: 4
+
+deepspeed:
+  train_micro_batch_size_per_gpu: 1
+  gradient_accumulation_steps: 8 ## n * forward -> backward
+  steps_per_print: 50
+  gradient_clipping: 0.1
+  zero_optimization:
+    stage: 2
+    cpu_offload: false
+    contiguous_gradients: false
+    overlap_comm: true
+    reduce_scatter: true
+    reduce_bucket_size: 1000000000
+    allgather_bucket_size: 1000000000
+    load_from_fp32_weights: false
+  zero_allow_untested_optimizer: true
+  bf16:
+    enabled: True
+  fp16:
+    enabled: False
+    loss_scale: 0
+    loss_scale_window: 400
+    hysteresis: 2
+    min_loss_scale: 1
+  optimizer:
+    type: AdamW #sat.ops.FusedEmaAdam
+    params:
+      lr: 5e-6
+      # lr: 1e-5
+      betas: [0.9, 0.95]
+      eps: 1e-8
+      weight_decay: 1e-4
+  activation_checkpointing:
+    partition_activations: false
+    contiguous_memory_optimization: false
+  wall_clock_breakdown: false
