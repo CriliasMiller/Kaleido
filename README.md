@@ -46,7 +46,7 @@ prompt@@image1.png@@image2.png@@image3.png
 ```
 python train_video_concat.py --base configs/video_model/dit_crossattn_14B_wanvae.yaml configs/training/video_wabx_14B_concat.yaml
 ```
-**Note:** Our training strategy is based on the CogivideoX model. For detailed information about the training process, please refer to the [CogivideoX repository](https://github.com/CriliasMiller/CogVideo/tree/main).
+**Note:** Our training strategy is based on the CogivideoX model. For detailed information about the training process, please refer to the [CogivideoX repository](https://github.com/zai-org/CogVideo).
 
 ## Gallery
 Our model is capable of broadly referencing various types of images, including humans, objects, and diverse scenarios such as try-on. This demonstrates its versatility and generalization ability across different tasks.
