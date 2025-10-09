@@ -439,9 +439,7 @@ class Rotary3DPositionEmbeddingMixin(BaseMixin):
             t_coords = kwargs['rope_position_ids'][:, :, 0]
             x_coords = kwargs['rope_position_ids'][:, :, 1]
             y_coords = kwargs['rope_position_ids'][:, :, 2]
-            # 创建布尔掩码，标记哪些位置的 coords 值不为 -1
             mask = (x_coords != -1) & (y_coords != -1) & (t_coords != -1)
-            # 仅对 mask 为 True 的位置应用频率编码
             freqs = torch.zeros([t.shape[0], t.shape[2], t.shape[3]], dtype=t.dtype, device=t.device)
             freqs[mask] = self.freqs[t_coords[mask], x_coords[mask], y_coords[mask]]
             freqs = freqs.unsqueeze(1)
@@ -475,7 +473,7 @@ class Rotary3DPositionEmbeddingMixin(BaseMixin):
             freqs = rearrange(freqs, 't h w d -> (t h w) d')
             return freqs.unsqueeze(0).unsqueeze(0)
         if not self.shiftT:
-            return t  ## TODO shiftT false时的处理方式
+            return t
 
         t_offset = kwargs.get('rope_T', 0) if kwargs['end_concat'] else 0
         t_s = kwargs['max_subject_nums'] + t_offset
@@ -484,7 +482,6 @@ class Rotary3DPositionEmbeddingMixin(BaseMixin):
         outputs = []
         rotate_fn = rotate_half if self.interleaved_rope else rotate_half_false
 
-        # 1. 得到每个 subject 的高度和宽度列表 (无论 dynamic 还是 static)
         if not kwargs['dynamic_subjects']:
             subjects_height_list = [kwargs['subjects_height']] * subject_nums
             subjects_width_list = [kwargs['subjects_width']] * subject_nums
@@ -492,9 +489,7 @@ class Rotary3DPositionEmbeddingMixin(BaseMixin):
             subjects_height_list = kwargs['subjects_height']
             subjects_width_list = kwargs['subjects_width']
 
-        # 2. 得到每个subject的flatten长度，以及累计前缀和
         subjects_size_list = [h * w for h, w in zip(subjects_height_list, subjects_width_list)]
-        # cumsum，每一段的起止
         subjects_size_cumsum = [0]
         for s in subjects_size_list:
             subjects_size_cumsum.append(subjects_size_cumsum[-1] + s)
@@ -524,7 +519,6 @@ class Rotary3DPositionEmbeddingMixin(BaseMixin):
             freqs_sin = reshape_freq(self.freqs_sin, t_s + subj_idx, t_s + subj_idx + 1, h_s, h_e, w_s, w_e).to(t.dtype)
 
 
-            # **修复分割 t 的方式**
             start = subjects_size_cumsum[subj_idx]
             end = subjects_size_cumsum[subj_idx+1]
             subj_t = t[:, :, start:end]
@@ -1245,7 +1239,7 @@ class DiffusionTransformer(BaseModel):
             x = x.to(self.dtype)
         if kwargs.get("concat_images", None) is not None: # btchw
             if kwargs["concat_images"].shape[0] != x.shape[0]:
-                concat_images = kwargs["concat_images"].repeat(2, 1, 1, 1, 1) # vae压缩后的 btchw t=21
+                concat_images = kwargs["concat_images"].repeat(2, 1, 1, 1, 1)
             else: 
                 concat_images = kwargs["concat_images"]
             mask = torch.ones(b, t, 4, h, w, device=x.device, dtype=x.dtype)

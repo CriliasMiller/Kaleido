@@ -296,7 +296,6 @@ def forward_step(data_iterator, model, args, timers, data_class=None):
 root_path = 'batch_save'
 
 def init_function(args, model, class_m=None):
-    ### 如果在loadmodel后 还有初始化模型参数的需求，即可在此处init。
     model.model.diffusion_model.mixins.adaln_layer.init_subject_adaLN_weights(copy=True, zero=False)
     return
     if args.init_adapter_layer:

@@ -88,7 +88,6 @@ class SATVideoDiffusionEngine(nn.Module):
         self.dtype_str = dtype_str
 
         # if args.fsdp2:
-        #     ## 混合精度运算的必要条件，否则会丢失精度
         #     dtype = torch.float32
         #     dtype_str = "fp32"
         ## fsdp2 model dtype should be fp32
@@ -322,7 +321,6 @@ class SATVideoDiffusionEngine(nn.Module):
         randn = torch.randn(batch_size, *shape).to(torch.float32).to(self.device)
         #debug !!!!!!!
         # breakpoint()
-        # randn = torch.load('/workspace/ckpt/tjy/glm-train-dev/noise.pt').to(self.device).permute(0, 2, 1, 3, 4).contiguous()
 
         if hasattr(self, "seeded_noise"):
             randn = self.seeded_noise(randn)
