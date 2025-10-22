@@ -61,21 +61,13 @@ Our model is capable of broadly referencing various types of images, including h
     </th>
   </tr>
 
-  <!-- <tr>
-    <td style="text-align: center; vertical-align: middle;">
-      <img src="resources/512p/1/image1.jpg" alt="Image 1" style="height: 150px;">
-    </td>
-    <td>
-      <video src='resources/512p/1/101.mp4' style="height: 150px;" controls autoplay loop></video>
-    </td>
-  </tr> -->
 
   <tr>
     <td style="text-align: center; vertical-align: middle;">
       <img src="resources/512p/2/image1.jpg" alt="Image 1" style="height: 150px;">
     </td>
     <td>
-      <video src='resources/512p/2/2.mp4' style="height: 150px;" controls autoplay loop></video>
+      <img src='resources/512p/2/2.gif' style="height: 150px;" controls autoplay loop>
     </td>
   </tr>
 
@@ -85,7 +77,7 @@ Our model is capable of broadly referencing various types of images, including h
       <img src="resources/512p/3/image2.jpg" alt="Image 1" style="height: 150px;">
     </td>
     <td>
-      <video src='resources/512p/3/6.mp4' style="height: 150px;" controls autoplay loop></video>
+      <img src='resources/512p/3/6.gif' style="height: 150px;" controls autoplay loop>
     </td>
   </tr>
 
@@ -95,7 +87,7 @@ Our model is capable of broadly referencing various types of images, including h
       <img src="resources/512p/4/image2.jpg" alt="Image 1" style="height: 150px;">
     </td>
     <td>
-      <video src='resources/512p/4/62.mp4' style="height: 150px;" controls autoplay loop></video>
+      <img src='resources/512p/4/62.gif' style="height: 150px;" controls autoplay loop>
     </td>
   </tr>
 
@@ -106,7 +98,7 @@ Our model is capable of broadly referencing various types of images, including h
       <img src="resources/512p/5/image2.jpg" alt="Image 1" style="height: 150px;">
     </td>
     <td>
-      <video src='resources/512p/5/109.mp4' style="height: 150px;" controls autoplay loop></video>
+      <img src='resources/512p/5/109.gif' style="height: 150px;" controls autoplay loop>
     </td>
   </tr>
 
@@ -116,7 +108,7 @@ Our model is capable of broadly referencing various types of images, including h
       <img src="resources/512p/6/image2.jpg" alt="Image 1" style="height: 150px;">
     </td>
     <td>
-      <video src='resources/512p/6/120.mp4' style="height: 150px;" controls autoplay loop></video>
+      <img src='resources/512p/6/120.gif' style="height: 150px;" controls autoplay loop>
     </td>
   </tr>
   
@@ -127,7 +119,7 @@ Our model is capable of broadly referencing various types of images, including h
       <img src="resources/512p/7/subject_2.png" alt="Image 1" style="height: 150px;">
     </td>
     <td>
-      <video src='resources/512p/7/output.mp4' style="height: 150px;" controls autoplay loop></video>
+      <img src='resources/512p/7/output.gif' style="height: 150px;" controls autoplay loop>
     </td>
   </tr>
 
@@ -138,7 +130,7 @@ Our model is capable of broadly referencing various types of images, including h
       <img src="resources/512p/8/image3.jpg" alt="Image 1" style="height: 150px;">
     </td>
     <td>
-      <video src='resources/512p/8/140.mp4' style="height: 150px;" controls autoplay loop></video>
+      <img src='resources/512p/8/140.gif' style="height: 150px;" controls autoplay loop>
     </td>
   </tr>
 
@@ -149,7 +141,7 @@ Our model is capable of broadly referencing various types of images, including h
       <img src="resources/512p/9/subject_2.png" alt="Image 1" style="height: 150px;">
     </td>
     <td>
-      <video src='resources/512p/9/output.mp4' style="height: 150px;" controls autoplay loop></video>
+      <img src='resources/512p/9/output.gif' style="height: 150px;" controls autoplay loop>
     </td>
   </tr>
 
@@ -160,7 +152,7 @@ Our model is capable of broadly referencing various types of images, including h
       <img src="resources/512p/10/subject_2.png" alt="Image 1" style="height: 150px;">
     </td>
     <td>
-      <video src='resources/512p/10/output.mp4' style="height: 150px;" controls autoplay loop></video>
+      <img src='resources/512p/10/output.gif' style="height: 150px;" controls autoplay loop>
     </td>
   </tr>
 </table>
