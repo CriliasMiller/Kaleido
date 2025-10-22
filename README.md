@@ -1,5 +1,5 @@
 # KALEIDO: OPEN-SOURCED MULTI-SUBJECT REFERENCE VIDEO GENERATION MODEL
-This repository contains the official implementation of **Kaleido**, proposed in our paper[![arXiv](https://img.shields.io/badge/arXiv-2510.18573-B31B1B.svg)](https://arxiv.org/abs/2510.18573#)
+This repository contains the official implementation of **Kaleido**, proposed in our paper: [![arXiv](https://img.shields.io/badge/arXiv-2510.18573-B31B1B.svg)](https://arxiv.org/abs/2510.18573#)
 
 <div align="center">
 <img src='resources/examples_show.png' style="width: 80%;">
@@ -57,7 +57,7 @@ Our model is capable of broadly referencing various types of images, including h
       <strong>Reference Images</strong>
     </th>
     <th style="text-align: center;">
-      <strong>Kaleido Results (512P)</strong>
+      <strong>Kaleido Results</strong>
     </th>
   </tr>
 
