@@ -1,2 +1,6 @@
 gif.py
 .DS_Store
+__pycache__/
+sat_old/
+Kaleido-14B-S2V/
+results/

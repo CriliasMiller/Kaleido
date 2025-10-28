@@ -7,6 +7,7 @@ This repository contains the official implementation of **Kaleido**, proposed in
 
 ## Update and News
 * 2025.10.22: 🔥 We propose **Kaleido**, a novel multi-subject reference video generation model.
+* 2025.10.28: 🔥 We release the checkpoints of Kaleido-14B-S2V.
 
 ## Qucik Start
 
@@ -29,12 +30,48 @@ pip install -r requirements.txt
 | ckpts       | Download Link                                                                                                                                           |    Notes                      |
 |--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
 | Kaleido-1.3B      | Soon   | Supports 480P
-| Kaleido-14B | Soon | Supports  512P
+| Kaleido-14B | | 🤗 [Huggingface](https://huggingface.co/Crilias/Kaleido-14B-S2V/tree/main)   | | Supports  512P
 
+Downloading the checkpoint is straightforward. Use the following commands:
+
+```bash
+# Download the repository (skip automatic LFS file downloads)
+GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/Crilias/Kaleido-14B-S2V
+
+# Enter the repository folder
+cd Kaleido-14B-S2V
+
+# Merge the checkpoint files
+python merge_kaleido.py
+```
+
+Arrange the model files into the following structure:
+
+```text
+.
+├── Kaleido-14B-S2V
+│   ├── model
+│   │   └── ....
+│   ├── Wan2.1_VAE.pth
+│   │
+│   └── umt5-xxl
+│       └── ....
+├── configs
+├── sat
+└── sgm
+```
+
+## Usage
 ### Inference
 
+```bash
+python sample_video.py --base configs/video_model/dit_crossattn_14B_wanvae.yaml configs/sampling sample_wanvae_concat_14b.yaml
 ```
-python sample_video.py --base configs/video_model/dit_crossattn_14B_wanvae.yaml configs/sampling/sample_wanvae_concat_14b.yaml
+
+You can also use multiple GPUs to accelerate the inference process:
+
+```bash
+bash torchrun_multi_gpu.sh
 ```
 **Note:** The condition input txt file should contain lines in the following format:
 ```

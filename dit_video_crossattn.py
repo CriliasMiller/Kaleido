@@ -503,8 +503,8 @@ class Rotary3DPositionEmbeddingMixin(BaseMixin):
                     h_s = kwargs['rope_H'] if self.shiftH else 0
                     w_s = kwargs['rope_W'] if self.shiftW else 0
                 else:
-                    h_s = self.max_h if self.shiftH else 0
-                    w_s = self.max_w if self.shiftW else 0
+                    h_s = self.max_h + kwargs['rope_H_shift'] if self.shiftH else kwargs['rope_H_shift']
+                    w_s = self.max_w + kwargs['rope_W_shift'] if self.shiftW else kwargs['rope_W_shift']
             else:
                 if self.rope_continue:
                     h_s = (1 + subj_idx) * kwargs['rope_H'] if self.shiftH else 0
@@ -1073,13 +1073,11 @@ class DiffusionTransformer(BaseModel):
             approx_gelu = nn.GELU(approximate='tanh')
             kwargs['activation_func'] = approx_gelu
             transformer_args.is_gated_mlp = False
-        print_rank0("start building RMSNorm")
         if use_RMSNorm:
             kwargs['layernorm'] = partial(RMSNorm, elementwise_affine=elementwise_affine, eps=layernorm_epsilon)
         else:
             kwargs['layernorm'] = partial(LayerNorm, elementwise_affine=elementwise_affine, eps=layernorm_epsilon)
 
-        print_rank0("success building RMSNorm")
         transformer_args.num_layers = self.num_layers
         transformer_args.hidden_size = hidden_size
         transformer_args.num_attention_heads = num_attention_heads
@@ -1089,9 +1087,7 @@ class DiffusionTransformer(BaseModel):
         transformer_args.layernorm_epsilon = layernorm_epsilon
         transformer_args.inner_hidden_size = self.inner_hidden_size
         transformer_args.use_final_layernorm = False
-        print_rank0("start building transformer")
         super().__init__(args=transformer_args, transformer=None,  **kwargs)
-        print_rank0("success building transformer")
 
         module_configs = modules
         self._build_modules(module_configs, transformer_args)

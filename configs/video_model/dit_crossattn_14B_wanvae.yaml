@@ -95,8 +95,8 @@ model:
             legacy_ucg_val: ""
             target: sgm.modules.encoders.umt5.T5EncoderModel
             params:
-              checkpoint_path: /workspace/ckpt/official_pretrains/umt5-xxl/models_t5_umt5-xxl-enc-bf16.pth
-              tokenizer_path: /workspace/ckpt/official_pretrains/umt5-xxl
+              checkpoint_path: Kaleido-14B-S2V/umt5-xxl/models_t5_umt5-xxl-enc-bf16.pth
+              tokenizer_path: Kaleido-14B-S2V/umt5-xxl
               max_length: 512
 
       #     - is_trainable: false
@@ -111,7 +111,7 @@ model:
   first_stage_config:
     target : sgm.models.wan_vae.WanVAE
     params:
-      vae_pth: /workspace/ckpt/official_pretrains/Wan2.1_VAE.pth
+      vae_pth: Kaleido-14B-S2V/Wan2.1_VAE.pth
       dtype: torch.bfloat16
 
   loss_fn_config:

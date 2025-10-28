@@ -6,16 +6,16 @@ args:
   mode: inference
   latent_channels: 16
   load_base_model: False
-  load: ckpts ## 
-  fsdp2_ckpt: True
+  load: Kaleido-14B-S2V/model ## 
   input_type: txt
   batch_size: 1
-  input_file: sample.txt
+  input_file: inference_examples.txt
   sample_neg_prompt: '色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走'
-  sampling_image_size: [512, 896] #[512, 896] #[832, 480] #[480, 832]
+  sampling_image_size: [512, 896] #[896, 512]
   vae_compress_size: [4, 8, 8] # t h w
   bf16: True
+  force_inference: True
   sampling_num_frames: 21
   sampling_fps: 16
-  output_dir: results/
-  sequence_parallel_size: 1
+  output_dir: results/final_version
+  sequence_parallel_size: 8

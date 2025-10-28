@@ -12,8 +12,52 @@ import logging
 from sat.helpers import print_all, print_rank0
 from sat import mpu
 from sat.arguments import set_random_seed
-from sat.arguments import add_training_args, add_evaluation_args, add_data_args, add_fsdp2_config_args
+from sat.arguments import add_training_args, add_evaluation_args, add_data_args #add_fsdp2_config_args
 import torch.distributed
+
+def add_fsdp2_config_args(parser):
+    """FSDP2 specific configuration arguments."""
+    
+    group = parser.add_argument_group('fsdp2', 'FSDP2 configurations')
+    
+    group.add_argument('--fsdp2', type=bool, default=False,
+                       help='Use PyTorch FSDP2 instead of DeepSpeed')
+    group.add_argument('--fsdp2-config', action='store_true')
+    group.add_argument('--fsdp2-mixed-precision', action='store_true',
+                       help='Enable mixed precision in FSDP2')
+    group.add_argument('--fsdp2-param-dtype', type=str, default='bfloat16',
+                       choices=['float32', 'float16', 'bfloat16'])
+    group.add_argument('--fsdp2-reduce-dtype', type=str, default='float32',
+                       choices=['float32', 'float16', 'bfloat16'])
+    group.add_argument('--fsdp2-auto-wrap', type=bool, default=True)
+    group.add_argument('--fsdp2-reshard-after-forward', type=bool, default=True)
+    group.add_argument('--fsdp2-offload-params', type=bool, default=False)
+    group.add_argument('--fsdp2-min-params-to-wrap', type=float, default=1e6)
+    group.add_argument('--fsdp2-wrap-patterns', type=str, nargs='+',
+                       default=['block', 'layer', 'transformer'])
+    group.add_argument('--fsdp2-gradient-checkpointing', type=bool, default=False)
+    group.add_argument('--fsdp2-cpu-offload-pin-memory', type=bool, default=True)
+    group.add_argument('--fsdp2-sharding-strategy', type=str, default='full_shard',
+                       choices=['full_shard', 'shard_grad_op', 'no_shard', 'hybrid_shard'])
+    group.add_argument('--fsdp2-backward-prefetch', type=bool, default=True)
+    group.add_argument('--fsdp2-forward-prefetch', type=bool, default=False)
+    group.add_argument('--fsdp2-sync-module-states', type=bool, default=True)
+    group.add_argument('--fsdp2-use-orig-params', type=bool, default=True)
+    group.add_argument('--fsdp2-optimizer-max-grad-norm', type=float, default=1.0)
+
+    # Optimizer 配置
+    group.add_argument('--fsdp2-optimizer', type=str, default='AdamW')
+    group.add_argument('--fsdp2-optimizer-lr', type=float, default=1e-4)
+    group.add_argument('--fsdp2-optimizer-weight-decay', type=float, default=0.01)
+    group.add_argument('--fsdp2-optimizer-eps', type=float, default=1e-8)
+    group.add_argument('--fsdp2-optimizer-betas', type=float, nargs=2, default=(0.9, 0.999))
+
+    #save_full_model
+    group.add_argument('--save-full-model', action='store_true', default=True,
+                       help='Save the full model or only the optimizer states')
+
+    return parser
+
 
 def add_model_config_args(parser):
     """Model arguments"""

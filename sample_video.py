@@ -357,6 +357,5 @@ if __name__ == '__main__':
 
     if args.model_type == "dit":
         Engine = diffusion_video.SATVideoDiffusionEngine
-    print(args.model_type)
 
     sampling_main(args, model_cls=Engine)

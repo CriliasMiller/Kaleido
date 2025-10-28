@@ -21,7 +21,7 @@ from transformers import (
     AutoTokenizer,
     SiglipTextModel
 )
-from sat.mpu import get_model_parallel_world_size, get_sequence_parallel_world_size
+from sat.mpu import get_model_parallel_world_size # get_sequence_parallel_world_size
 
 from ...modules.autoencoding.regularizers import DiagonalGaussianRegularizer
 from ...modules.diffusionmodules.model import Encoder
