@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [ -z "$MLP_WORKER_NUM" ]; then
-    MLP_WORKER_NUM=1   # 节点数
-    MLP_GPU=8          # 每节点 GPU 数
+    MLP_WORKER_NUM=1   # nodes
+    MLP_GPU=8          # GPUs / node
 fi
 
 if [ -z "$MLP_WORKER_0_HOST" ]; then
@@ -12,7 +12,7 @@ if [ -z "$MLP_WORKER_0_HOST" ]; then
 else
     MASTER_ADDR=$MLP_WORKER_0_HOST
     MASTER_PORT=$MLP_WORKER_0_PORT
-    NODE_RANK=${MLP_ROLE_INDEX:-0} # 当前节点rank
+    NODE_RANK=${MLP_ROLE_INDEX:-0}
 fi
 
 export MASTER_ADDR MASTER_PORT
