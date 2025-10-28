@@ -1,5 +1,5 @@
 # coding=utf-8
-# Rewrite by Ming Ding, Tsinghua University
+# Rewrite by Ming Ding, Zhenxing Zhang.
 # Copyright (c) 2019, NVIDIA CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
