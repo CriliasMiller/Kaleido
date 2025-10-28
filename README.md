@@ -31,7 +31,8 @@ pip install -r requirements.txt
 |--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
 | Kaleido-14B | 🤗 [Huggingface](https://huggingface.co/Crilias/Kaleido-14B-S2V/tree/main)   | Supports  512P
 
-Downloading the checkpoint is straightforward. Use the following commands:
+Use the following commands to download the model weights
+(We have integrated both Wan VAE and T5 modules into this checkpoint for convenience).
 
 ```bash
 # Download the repository (skip automatic LFS file downloads)
@@ -90,7 +91,7 @@ prompt@@image1.png@@image2.png@@image3.png
 ```
 python train_video_concat.py --base configs/video_model/dit_crossattn_14B_wanvae.yaml configs/training/video_wabx_14B_concat.yaml
 ```
-**Note:** Our training strategy is based on the CogivideoX model. For detailed information about the training process, please refer to the [CogivideoX repository](https://github.com/zai-org/CogVideo).
+**Note:** Our training strategy is based on the CogivideoX model. For detailed information about the training process, please refer to the [CogivideoX repository](https://github.com/zai-org/CogVideo).In addition to the DeepSpeed training approach, we also provide an implementation using FSDP2 for distributed training.
 
 ## Gallery
 Our model is capable of broadly referencing various types of images, including humans, objects, and diverse scenarios such as try-on. This demonstrates its versatility and generalization ability across different tasks.
