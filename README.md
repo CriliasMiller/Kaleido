@@ -9,8 +9,9 @@ This repository contains the official implementation of **Kaleido**, proposed in
 </div>
 
 ## Update and News
-* 2025.10.22: 🔥 We propose **Kaleido**, a novel multi-subject reference video generation model.
+
 * 2025.10.28: 🔥 We release the checkpoints of Kaleido-14B-S2V.
+* 2025.10.22: 🔥 We propose **Kaleido**, a novel multi-subject reference video generation model.
 
 ## Qucik Start
 
