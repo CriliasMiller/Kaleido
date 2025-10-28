@@ -73,6 +73,14 @@ You can also use multiple GPUs to accelerate the inference process:
 ```bash
 bash torchrun_multi_gpu.sh
 ```
+You can accelerate the inference process by utilizing multiple GPUs. Additionally, you can enable Sequence Parallelism in the YAML configuration file to further speed up inference.
+```yaml
+args:
+  s2v_concat: True
+  ....
+  sequence_parallel_size: 8
+```
+
 **Note:** The condition input txt file should contain lines in the following format:
 ```
 prompt@@image1.png@@image2.png@@image3.png
