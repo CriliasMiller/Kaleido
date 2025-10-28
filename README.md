@@ -30,7 +30,7 @@ pip install -r requirements.txt
 | ckpts       | Download Link                                                                                                                                           |    Notes                      |
 |--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
 | Kaleido-1.3B      | Soon   | Supports 480P
-| Kaleido-14B | | 🤗 [Huggingface](https://huggingface.co/Crilias/Kaleido-14B-S2V/tree/main)   | | Supports  512P
+| Kaleido-14B | 🤗 [Huggingface](https://huggingface.co/Crilias/Kaleido-14B-S2V/tree/main)   | Supports  512P
 
 Downloading the checkpoint is straightforward. Use the following commands:
 
