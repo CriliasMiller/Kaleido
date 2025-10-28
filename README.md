@@ -196,8 +196,8 @@ Our model is capable of broadly referencing various types of images, including h
 
 ## Todo List
 - [x] Inference codes and Training codes for Kaleido
+- [x] Checkpoint of Kaleido
 - [ ] Datapipline of Kaleido
-- [ ] Checkpoint of Kaleido
 
 ## Citation 
 If you find our work helpful, please cite our paper:
