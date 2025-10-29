@@ -5,7 +5,7 @@ This repository contains the official implementation of **Kaleido**, proposed in
 </a>
 
 <div align="center">
-<img src='resources/examples_show.png' style="width: 80%;">
+<img src='resources/examples_show.png' style="width: 90%;">
 </div>
 
 ## Update and News
